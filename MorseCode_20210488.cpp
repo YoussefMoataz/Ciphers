@@ -18,8 +18,10 @@ Purpose: Cipher and Decipher messages
 #include <map>
 using namespace std;
 
+// this function is used to encrypt a character/digit and return its morse representation
 string encryptMorse(char input) {
 
+    // define the character-morse representation
     switch (input) {
         case 'a':
             return ".-";
@@ -98,6 +100,7 @@ string encryptMorse(char input) {
     }
 }
 
+// get message from user and encrypt it
 void getInputAndCipher(){
     string text;
 
@@ -105,18 +108,21 @@ void getInputAndCipher(){
 
     getline(cin, text);
 
-    for (int i = 0; i < text[i]; ++i) {
+    // loop over the characters of the message and encrypt each character then print it
+    for (char i : text) {
 
-        cout << encryptMorse(tolower(text[i])) << " ";
+        cout << encryptMorse(tolower(i)) << " ";
 
     }
 
 }
 
+// this function is used to decrypt a morse character and returns a character/digit
 char decryptMorse(string morse) {
 
     map<string, char> morseCharacters;
 
+    // define the morse-character representation
     morseCharacters.insert(pair<string, char>(".-", 'a'));
     morseCharacters.insert(pair<string, char>("-...", 'b'));
     morseCharacters.insert(pair<string, char>("-.-.", 'c'));
@@ -157,6 +163,7 @@ char decryptMorse(string morse) {
     return morseCharacters[morse];
 }
 
+// gets morse code from the user and decrypt it
 void getInputAndDecipher(){
 
     string morse;
@@ -167,6 +174,8 @@ void getInputAndDecipher(){
 
     string morseCharacter = "";
 
+    // morse code is separated by spaces
+    // loop till finding a space and pass the morse code to the function
     for (char c : morse) {
 
         if (c == ' '){
@@ -177,10 +186,12 @@ void getInputAndDecipher(){
         }
 
     }
+    // decrypt the remaining morse character after the last space
     cout << decryptMorse(morseCharacter);
 
 }
 
+// get what the user needs to do
 void getUserChoice() {
 
     int userChoice = 0;
