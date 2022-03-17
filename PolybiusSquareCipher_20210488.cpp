@@ -1,23 +1,20 @@
-// to lower
-// replace j with i
-
 
 #include <iostream>
 #include <string>
 
 using namespace std;
 
-char characters [5][5] = { {'a', 'b', 'c', 'd', 'e'},
-                           {'f', 'g', 'h', 'i', 'k'},
-                           {'l', 'm', 'n', 'o', 'p'},
-                           {'q', 'r', 's', 't', 'u'},
-                           {'v', 'w', 'x', 'y', 'z'}};
+char characters[5][5] = {{'a', 'b', 'c', 'd', 'e'},
+                         {'f', 'g', 'h', 'i', 'k'},
+                         {'l', 'm', 'n', 'o', 'p'},
+                         {'q', 'r', 's', 't', 'u'},
+                         {'v', 'w', 'x', 'y', 'z'}};
 
-int indexOf(char x [], char digit){
+int indexOf(char x[], char digit) {
 
-    for(int i = 0; i < 5; i++){
+    for (int i = 0; i < 5; i++) {
 
-        if (digit == x[i]){
+        if (digit == x[i]) {
             return i;
         }
 
@@ -25,9 +22,9 @@ int indexOf(char x [], char digit){
 
 }
 
-void getInputAndCipher(){
+void getInputAndCipher() {
 
-    int key [] = {5, 1, 4, 2, 3};
+    int key[] = {5, 1, 4, 2, 3};
 
     string message;
 
@@ -37,7 +34,17 @@ void getInputAndCipher(){
 
     int counter = 0;
 
-    for (char c : message) {
+    for (int i = 0; i < message.length(); i++) {
+
+        message[i] = tolower(message[i]);
+
+        if (message[i] == 'j'){
+            message[i] = 'i';
+        }
+
+    }
+
+    for (char c: message) {
         for (int i = 0; i < 5; i++) {
 
             for (int j = 0; j < 5; j++) {
@@ -50,7 +57,7 @@ void getInputAndCipher(){
 
         }
 
-        if (isspace(c)){
+        if (isspace(c)) {
             cout << c;
             counter++;
         }
@@ -59,9 +66,9 @@ void getInputAndCipher(){
 
 }
 
-void getInputAndDecipher(){
+void getInputAndDecipher() {
 
-    char key [] = {'5', '1', '4', '2', '3'};
+    char key[] = {'5', '1', '4', '2', '3'};
 
     string cipher;
 
@@ -70,36 +77,36 @@ void getInputAndDecipher(){
     getline(cin, cipher);
 
     int pairCounter = 0;
-    char codePair [] = " ";
+    char codePair[] = " ";
 
     // split the string after two characters
-        for (int i = 0; i < cipher.length(); i++) {
+    for (int i = 0; i < cipher.length(); i++) {
 
-            if (isspace(cipher[i])){
+        if (isspace(cipher[i])) {
 
-                cout << " ";
-                continue;
-
-            }
-
-            // hexaPair contains two characters only
-            if (pairCounter < 2) {
-                codePair[pairCounter] = cipher[i];
-                pairCounter += 1;
-            }
-
-            // print the character of the corresonding hexa value
-            if (pairCounter == 2) {
-
-                cout << characters[indexOf(key, codePair[0])][indexOf(key, codePair[1])];
-
-                 // reset the values for new hexa code
-                codePair[0] = ' ';
-                codePair[1] = ' ';
-                pairCounter = 0;
-            }
+            cout << " ";
+            continue;
 
         }
+
+        // hexaPair contains two characters only
+        if (pairCounter < 2) {
+            codePair[pairCounter] = cipher[i];
+            pairCounter += 1;
+        }
+
+        // print the character of the corresonding hexa value
+        if (pairCounter == 2) {
+
+            cout << characters[indexOf(key, codePair[0])][indexOf(key, codePair[1])];
+
+            // reset the values for new hexa code
+            codePair[0] = ' ';
+            codePair[1] = ' ';
+            pairCounter = 0;
+        }
+
+    }
 
 }
 
@@ -116,28 +123,27 @@ void getUserChoice() {
     cin >> userChoice;
     cin.ignore();
 
-    switch (userChoice)
-    {
-    case 1: // action #1
-        getInputAndCipher();
+    switch (userChoice) {
+        case 1: // action #1
+            getInputAndCipher();
 
-        // re-get the user coice
-        getUserChoice();
-        break;
+            // re-get the user coice
+            getUserChoice();
+            break;
 
-    case 2: // action #2
-        getInputAndDecipher();
+        case 2: // action #2
+            getInputAndDecipher();
 
-        // re-get the user coice
-        getUserChoice();
-        break;
+            // re-get the user coice
+            getUserChoice();
+            break;
 
-    case 3: // action #3
-        // finishes the program
-        exit(0);
+        case 3: // action #3
+            // finishes the program
+            exit(0);
 
-    default:
-        break;
+        default:
+            break;
     }
 
 
