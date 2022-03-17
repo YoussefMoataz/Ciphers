@@ -40,17 +40,21 @@
 //
 //    getline(cin, key);
 //
+//    // convert key to lower case
 //    for (int i = 0; i < key.length(); i++) {
 //        key[i] = tolower(key[i]);
 //    }
 //
+//    // remove the key characters from the alphabet
 //    for (int i = 0; i < key.length(); i++) {
 //        auto position = remove(alphabet.begin(), alphabet.end(), key[i]);
 //        alphabet.erase(position, alphabet.end());
 //    }
 //
-//
+//    // add the key at the beginning of the remaining alphabet
 //    string secretKey = key + alphabet;
+//
+//    // print the secret key
 //    cout << "The secret key is: " << secretKey << endl;
 //
 //    string message;
@@ -59,6 +63,7 @@
 //
 //    getline(cin, message);
 //
+//    // convert message to lower case
 //    for (int i = 0; i < message.length(); i++) {
 //        message[i] = tolower(message[i]);
 //    }
@@ -69,16 +74,20 @@
 //
 //void cipher(string text, string secretKey) {
 //
+//    // loop over the message characters
 //    for (int i = 0; i < text.length(); i++) {
 //
+//        // loop over the full alphabet
 //        for (int j = 0; j < alphabetMain.length(); j++) {
 //
+//            // encrypting process
 //            if (text[i] == alphabetMain[j]) {
 //                cout << secretKey[j];
 //            }
 //
 //        }
 //
+//        // print the non-alphabet characters as is
 //        if (!isalpha(text[i])) {
 //            cout << text[i];
 //        }
@@ -96,16 +105,21 @@
 //
 //    getline(cin, key);
 //
+//    // convert key to lower case
 //    for (int i = 0; i < key.length(); i++) {
 //        key[i] = tolower(key[i]);
 //    }
 //
+//    // remove the key characters from the alphabet
 //    for (int i = 0; i < key.length(); i++) {
 //        auto position = remove(alphabet.begin(), alphabet.end(), key[i]);
 //        alphabet.erase(position, alphabet.end());
 //    }
 //
+//    // add the key at the beginning of the remaining alphabet
 //    string secretKey = key + alphabet;
+//
+//    // print the secret key
 //    cout << "The secret key is: " << secretKey << endl;
 //
 //    string message;
@@ -114,6 +128,7 @@
 //
 //    getline(cin, message);
 //
+//    // convert message to lower case
 //    for (int i = 0; i < message.length(); i++) {
 //        message[i] = tolower(message[i]);
 //    }
@@ -124,16 +139,20 @@
 //
 //void decipher(string text, string secretKey) {
 //
+//    // loop over the message characters
 //    for (int i = 0; i < text.length(); i++) {
 //
+//        // loop over the secret key
 //        for (int j = 0; j < secretKey.length(); j++) {
 //
+//            // decryption process
 //            if (text[i] == secretKey[j]) {
 //                cout << alphabetMain[j];
 //            }
 //
 //        }
 //
+//        // print the non-alphabet characters as is
 //        if (!isalpha(text[i])) {
 //            cout << text[i];
 //        }
@@ -179,9 +198,6 @@
 //}
 //
 //int main() {
-//
-////    getInputAndCipher();
-////    getInputAndDecipher();
 //
 //    getUserChoice();
 //
