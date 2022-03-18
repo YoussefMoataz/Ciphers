@@ -22,14 +22,62 @@ int indexOf(int x[], char digit) {
 
 }
 
+string inputKeyAndCheckDigits(){
+
+    string key;
+    bool valid = true;
+    int count1 = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0;
+
+    cout << "Enter the secret key";
+
+    getline(cin, key);
+
+    if (key.length() == 5) {
+
+        for (char d: key) {
+
+            if (!isdigit(d)) {
+                valid = false;
+                break;
+            }
+
+            if (d == '1'){
+                count1++;
+            }else if(d == '2'){
+                count2++;
+            }else if(d == '3'){
+                count3++;
+            }else if(d == '4'){
+                count4++;
+            }else if(d == '5'){
+                count5++;
+            }
+
+        }
+
+        if ((count1 != 1) || (count2 != 1) || (count3 != 1) || (count4 != 1) || (count5 != 1)){
+            valid = false;
+        }
+
+        if (!valid){
+            inputKeyAndCheckDigits();
+        }else{
+            return key;
+        }
+
+    }else{
+        inputKeyAndCheckDigits();
+    }
+
+}
+
 void getInputAndCipher() {
 
     // start key
 
     int secretKey[5];
-    string key;
 
-    getline(cin, key);
+    string key = inputKeyAndCheckDigits();
 
     for (int i = 0; i < 5; ++i) {
 
@@ -85,9 +133,7 @@ void getInputAndDecipher() {
     // start key
 
     int secretKey[5];
-    string key;
-
-    getline(cin, key);
+    string key = inputKeyAndCheckDigits();
 
     for (int i = 0; i < 5; ++i) {
 
