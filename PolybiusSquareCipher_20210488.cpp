@@ -10,7 +10,7 @@ char characters[5][5] = {{'a', 'b', 'c', 'd', 'e'},
                          {'q', 'r', 's', 't', 'u'},
                          {'v', 'w', 'x', 'y', 'z'}};
 
-int indexOf(char x[], char digit) {
+int indexOf(int x[], char digit) {
 
     for (int i = 0; i < 5; i++) {
 
@@ -24,7 +24,20 @@ int indexOf(char x[], char digit) {
 
 void getInputAndCipher() {
 
-    int key[] = {5, 1, 4, 2, 3};
+    // start key
+
+    int secretKey[5];
+    string key;
+
+    getline(cin, key);
+
+    for (int i = 0; i < 5; ++i) {
+
+        secretKey[i] = stoi(to_string(key[i]));
+
+    }
+
+    // end key
 
     string message;
 
@@ -45,6 +58,7 @@ void getInputAndCipher() {
     }
 
     for (char c: message) {
+
         for (int i = 0; i < 5; i++) {
 
             for (int j = 0; j < 5; j++) {
@@ -68,7 +82,20 @@ void getInputAndCipher() {
 
 void getInputAndDecipher() {
 
-    char key[] = {'5', '1', '4', '2', '3'};
+    // start key
+
+    int secretKey[5];
+    string key;
+
+    getline(cin, key);
+
+    for (int i = 0; i < 5; ++i) {
+
+        secretKey[i] = stoi(to_string(key[i]));
+
+    }
+
+    // end key
 
     string cipher;
 
@@ -98,7 +125,7 @@ void getInputAndDecipher() {
         // print the character of the corresonding hexa value
         if (pairCounter == 2) {
 
-            cout << characters[indexOf(key, codePair[0])][indexOf(key, codePair[1])];
+            cout << characters[indexOf(secretKey, codePair[0])][indexOf(secretKey, codePair[1])];
 
             // reset the values for new hexa code
             codePair[0] = ' ';
