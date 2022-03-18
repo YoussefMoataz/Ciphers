@@ -1,28 +1,48 @@
+/*
+
+FCAI - Programming 1 - 2022 - Assignment 2
+Program Name: PolybiusSquareCipher_20210488.cpp
+Program Description: This program is used to encrypt and decrypt text from Polybius square with a secret key
+
+Last Modification Date: March 18, 2022
+Version: v1.1.4
+Author: Youssef Moataz
+ID: 20210488
+Group: A
+Teaching Assistant: Not Yet
+Purpose: Cipher and Decipher messages
+
+*/
 
 #include <iostream>
 #include <string>
 
 using namespace std;
 
-char characters[5][5] = {{'a', 'b', 'c', 'd', 'e'},
-                         {'f', 'g', 'h', 'i', 'k'},
-                         {'l', 'm', 'n', 'o', 'p'},
-                         {'q', 'r', 's', 't', 'u'},
-                         {'v', 'w', 'x', 'y', 'z'}};
+// ---DO NOT CHANGE--- alphabet characters forming the square
+const char characters[5][5] = {{'a', 'b', 'c', 'd', 'e'},
+                               {'f', 'g', 'h', 'i', 'k'},
+                               {'l', 'm', 'n', 'o', 'p'},
+                               {'q', 'r', 's', 't', 'u'},
+                               {'v', 'w', 'x', 'y', 'z'}};
+// ---DO NOT CHANGE--- alphabet characters forming the square
 
-int indexOf(int x[], char digit) {
+
+// get index of a character from int array
+int indexOf(int arr[], char digit) {
 
     for (int i = 0; i < 5; i++) {
 
-        if (digit == x[i]) {
+        if (digit == arr[i]) {
             return i;
         }
 
     }
 
+    return 0;
 }
 
-string inputKeyAndCheckDigits(){
+string inputKeyAndCheckDigits() {
 
     string key;
     bool valid = true;
@@ -30,47 +50,55 @@ string inputKeyAndCheckDigits(){
 
     cout << "Enter the secret key";
 
+    // get the key
     getline(cin, key);
 
     if (key.length() == 5) {
 
         for (char d: key) {
 
+            // if the character is not digit stop the loop
             if (!isdigit(d)) {
                 valid = false;
                 break;
             }
 
-            if (d == '1'){
+            if (d == '1') {
                 count1++;
-            }else if(d == '2'){
+            } else if (d == '2') {
                 count2++;
-            }else if(d == '3'){
+            } else if (d == '3') {
                 count3++;
-            }else if(d == '4'){
+            } else if (d == '4') {
                 count4++;
-            }else if(d == '5'){
+            } else if (d == '5') {
                 count5++;
             }
 
         }
 
-        if ((count1 != 1) || (count2 != 1) || (count3 != 1) || (count4 != 1) || (count5 != 1)){
+        // key must have exactly ONE (1, 2, 3, 4, 5)
+        if ((count1 != 1) || (count2 != 1) || (count3 != 1) || (count4 != 1) || (count5 != 1)) {
             valid = false;
         }
 
-        if (!valid){
+        // recall the function if not valid input
+        if (!valid) {
             inputKeyAndCheckDigits();
-        }else{
+
+        // return the key ONLY if valid key is entered
+        } else {
             return key;
         }
 
-    }else{
+    // recall the function if not valid input
+    } else {
         inputKeyAndCheckDigits();
     }
 
 }
 
+// encrypt
 void getInputAndCipher() {
 
     // start key
@@ -79,6 +107,7 @@ void getInputAndCipher() {
 
     string key = inputKeyAndCheckDigits();
 
+    // convert key characters to integers
     for (int i = 0; i < 5; ++i) {
 
         secretKey[i] = stoi(to_string(key[i]));
@@ -91,24 +120,32 @@ void getInputAndCipher() {
 
     cout << "Enter the message:" << endl;
 
+    // get the message
     getline(cin, message);
 
     int counter = 0;
 
+    // convert the message to lower case and replace Js with Is (lower case also)
     for (int i = 0; i < message.length(); i++) {
 
         message[i] = tolower(message[i]);
 
-        if (message[i] == 'j'){
+        if (message[i] == 'j') {
             message[i] = 'i';
         }
 
     }
 
+    // Encryption goes here
+    // get the character with its indices
+    // replace the those indices with the indices from the key's array.
+    // Loop the message
     for (char c: message) {
 
+        // loop the alphabet array - Rows
         for (int i = 0; i < 5; i++) {
 
+            // loop the alphabet array - Columns
             for (int j = 0; j < 5; j++) {
 
                 if (c == characters[i][j]) {
@@ -119,6 +156,7 @@ void getInputAndCipher() {
 
         }
 
+        // print the space as is
         if (isspace(c)) {
             cout << c;
             counter++;
@@ -128,13 +166,16 @@ void getInputAndCipher() {
 
 }
 
+// decrypt
 void getInputAndDecipher() {
 
     // start key
 
     int secretKey[5];
+
     string key = inputKeyAndCheckDigits();
 
+    // convert key characters to integers
     for (int i = 0; i < 5; ++i) {
 
         secretKey[i] = stoi(to_string(key[i]));
@@ -147,14 +188,17 @@ void getInputAndDecipher() {
 
     cout << "Enter the cipher text:" << endl;
 
+    // get the cipher text
     getline(cin, cipher);
 
+
+    // Split the cipher and decrypt each Two digits together
     int pairCounter = 0;
     char codePair[] = " ";
 
-    // split the string after two characters
     for (int i = 0; i < cipher.length(); i++) {
 
+        // print the space as is
         if (isspace(cipher[i])) {
 
             cout << " ";
@@ -162,13 +206,13 @@ void getInputAndDecipher() {
 
         }
 
-        // hexaPair contains two characters only
+        // codePair contains two characters only
         if (pairCounter < 2) {
             codePair[pairCounter] = cipher[i];
             pairCounter += 1;
         }
 
-        // print the character of the corresonding hexa value
+        // print the character after getting its real indices from the alphabet array
         if (pairCounter == 2) {
 
             cout << characters[indexOf(secretKey, codePair[0])][indexOf(secretKey, codePair[1])];

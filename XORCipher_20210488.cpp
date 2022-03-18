@@ -97,7 +97,7 @@
 //                   hexaCounter += 1;
 //            }
 //
-//            // print the character of the corresonding hexa value
+//            // print the character of the corresponding hexa value
 //            if (hexaCounter == 2) {
 //                 cout << ((char)(((int)stoi(hexaPair, 0, 16) - 96) ^ 80));
 //
