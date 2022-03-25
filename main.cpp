@@ -366,9 +366,9 @@ const string alphabetMain = "abcdefghijklmnopqrstuvwxyz";
 string alphabet5 = "abcdefghijklmnopqrstuvwxyz";
 
 // define the functions
-void cipher(string text, string secretKey);
+void cipherC5(string text, string secretKey);
 
-void decipher(string text, string secretKey);
+void decipherC5(string text, string secretKey);
 
 // action #1
 void getInputAndCipherC5() {
@@ -407,11 +407,11 @@ void getInputAndCipherC5() {
         message[i] = tolower(message[i]);
     }
 
-    cipher(message, secretKey);
+    cipherC5(message, secretKey);
 
 }
 
-void cipher(string text, string secretKey) {
+void cipherC5(string text, string secretKey) {
 
     // loop over the message characters
     for (int i = 0; i < text.length(); i++) {
@@ -472,11 +472,11 @@ void getInputAndDecipherC5() {
         message[i] = tolower(message[i]);
     }
 
-    decipher(message, secretKey);
+    decipherC5(message, secretKey);
 
 }
 
-void decipher(string text, string secretKey) {
+void decipherC5(string text, string secretKey) {
 
     // loop over the message characters
     for (int i = 0; i < text.length(); i++) {
@@ -1167,7 +1167,7 @@ void callDecryptionC8() {
 }
 
 // contains code for action #1
-void callDecryptionFromHexa() {
+void callDecryptionFromHexaC8() {
 
     string userInput = "";
 
@@ -1209,7 +1209,7 @@ void getUserChoiceC8() {
         break;
 
     case 3: // action #3
-        callDecryptionFromHexa();
+        callDecryptionFromHexaC8();
 
         // re-get the user coice
         getUserChoiceC8();
@@ -1234,11 +1234,104 @@ void getUserChoiceC8() {
 // End Cipher 9
 
 
-// add the main input function
+// MAIN input function
+void getMainUserChoice(){
+
+    int userChoice = 0;
+
+    cout << "\n";
+    cout << "Habibaaaay habiby habiby habiby." << endl << "What do you like to do ya expensive?" << endl;
+    cout << "0 - Affine Cipher" << endl;
+    cout << "1 - Caesar Cipher" << endl;
+    cout << "2 - Atbash Cipher" << endl;
+    cout << "3 - Vignere Cipher" << endl;
+    cout << "4 - Baconian Cipher" << endl;
+    cout << "5 - Simple Substitution Cipher" << endl;
+    cout << "6 - Polybius Square Cipher" << endl;
+    cout << "7 - Morse Code" << endl;
+    cout << "8 - XOR Cipher" << endl;
+    cout << "9 - Rail-fence Cipher" << endl;
+    cout << "-1 - Exit" << endl;
+
+    cin >> userChoice;
+
+    switch (userChoice)
+    {
+        case 0:
+
+            getInputC0();
+
+            break;
+
+        case 1:
+
+            cipherC1();
+
+            break;
+
+        case 2:
+
+            getUserChoiceC2();
+
+            break;
+
+        case 3:
+
+            cipherC3();
+
+            break;
+
+        case 4:
+
+            // add c4
+
+            break;
+
+        case 5:
+
+            getUserChoiceC5();
+
+            break;
+
+        case 6:
+
+            getUserChoiceC6();
+
+            break;
+
+        case 7:
+
+            getUserChoiceC7();
+
+            break;
+
+        case 8:
+
+            getUserChoiceC8();
+
+            break;
+
+        case 9:
+
+            // add c4
+
+            break;
+
+        case -1:
+            // finishes the program
+            exit(0);
+
+        default:
+            break;
+    }
+
+
+}
 
 int main() {
 
     // Call the main input function
+    getMainUserChoice();
 
     return 0;
 }
