@@ -8,7 +8,7 @@
 * Group task
 
 ### Description :
-This project contains 10 ciphers (10 separate files and 1 main file having them all). For all programs, user can cipher and decipher text messages.
+This project contains 10 ciphers, user chooses the cipher from the in-app menu. For all programs, user can cipher and decipher text messages.
 
 ### Ciphers :
 * Affine Cipher
